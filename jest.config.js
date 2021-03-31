@@ -1,6 +1,7 @@
 module.exports = {
     verbose: true,
     roots: ["<rootDir>/src/", "<rootDir>/specs/"],
+    coverageDirectory: "build/coverage",
     moduleFileExtensions: ['js', 'vue'],
     moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/src/$1',

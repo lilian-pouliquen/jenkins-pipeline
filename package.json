@@ -46,17 +46,9 @@
     "last 2 versions",
     "not dead"
   ],
-  "jest": {
-    "coverageReporters": [
-      "text"
-    ],
-    "reporters": [
-      "default",
-      "jest-junit"
-    ]
-  },
   "jest-junit": {
-    "output": "build/coverage/junit/junit.xml",
+    "outputDirectory": "build/coverage/junit",
+    "outputName": "junit.xml",
     "usePathForSuiteName": "true"
   }
 }
