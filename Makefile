@@ -1,5 +1,5 @@
 # Variables
-JEST_DIR = build/coverage/jest
+CONTAINER = vuejs
 
 # Règles
 all: help
@@ -7,22 +7,34 @@ all: help
 help:
 	@echo ""
 	@echo "    [GESTION DES CONTENEURS]"
-	@echo "        build   :    Construit l'image docker node:vuejs"
+	@echo "        build     :    Construit l'image docker node:vuejs"
 	@echo ""
-	@echo "        install :    Installe les dépendences du projet via npm"
+	@echo "        install   :    Installe les dépendences du projet via npm"
 	@echo ""
-	@echo "        prepare :    Construit l'image docker node:vuejs et installe les dépendences du projet via npm"
+	@echo "        prepare   :    Construit l'image docker node:vuejs et installe les dépendences du projet via npm"
 	@echo ""
-	@echo "        start   :    Démarre les conteneurs avec docker-compose"
+	@echo "        start     :    Démarre les conteneurs avec docker-compose"
 	@echo ""
-	@echo "        stop    :    Arrête les conteneurs avec docker-compose"
+	@echo "        stop      :    Arrête les conteneurs avec docker-compose"
 	@echo ""
-	@echo "        restart :    Redémarre les conteneurs avec docker-compose"
+	@echo "        restart   :    Redémarre les conteneurs avec docker-compose"
 	@echo ""
-	@echo "    [Projet]"
-	@echo "        jest    :    Exécute les tests et génère la couvertur de code"
+	@echo "        logs      :    Lit en continu les logs du conteneur spécifié"
+	@echo "                         Uilisation : make logs => logs du conteneur vuejs"
+	@echo "                                      make logs CONTAINER=jenkins => logs du conteneur jenkins"
 	@echo ""
-
+	@echo "        bash      :    Exécute une ligne de commande bash intéractive dans le conteneur spécifié"
+	@echo "                         Uilisation : make bash => bash dans le conteneur vuejs"
+	@echo "                                      make bash CONTAINER=jenkins => bash dans le conteneur jenkins"
+	@echo ""
+	@echo "    [PROJET]"
+	@echo "        jest      :    Exécute les tests et génère la couverture de code"
+	@echo ""
+	@echo "    [CONTENEURS DISPONIBLES]"
+	@echo "        - vuejs   :    Serveur Nodejs pour l'application Vue.js"
+	@echo "        - jenkins :    Service Jenkins"
+	@echo "        - scm     :    Service SCM Manager"
+	@echo ""
 
 build:
 	docker image build --no-cache --file vue.Dockerfile --tag node:vuejs ./
@@ -40,5 +52,11 @@ stop:
 
 restart: stop start
 
+logs:
+	docker logs --follow $(CONTAINER)
+
+bash:
+	docker exec --interactive --tty $(CONTAINER) bash
+
 jest:
-	docker exec vue_raspberry jest --coverage --reporters=default --reporters=jest-junit
+	docker exec vuejs jest --coverage --reporters=default --reporters=jest-junit
