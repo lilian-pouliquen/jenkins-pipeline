@@ -2,7 +2,7 @@
 FROM node:lts-alpine
 
 # Installing make
-RUN apk add make
+RUN apk add make bash
 
 # Creating app directory
 WORKDIR /app
