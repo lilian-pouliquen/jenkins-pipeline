@@ -2,7 +2,7 @@
 all: install clean test
 
 install:
-    npm install
+	npm install
 
 clean:
 	@rm -rf build/logs
