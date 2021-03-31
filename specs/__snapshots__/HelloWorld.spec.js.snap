@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`page initiale 1`] = `
+<div>
+  <h1>Home</h1>
+  <div>
+    <form><input type="text">
+      <div class="div-error">
+        <p>
+          No username provided
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+`;

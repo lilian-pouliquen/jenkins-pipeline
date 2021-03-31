@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  vue:
+    container_name: "vue_raspberry"
+    image: node:vuejs
+    build:
+      context: ./
+      dockerfile: vue.Dockerfile
+    restart: always
+    volumes:
+      - "./:/app/"
+    ports:
+      - 80:8080
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root
+    privileged: true
+    ports:
+      - 8080:8080
+    container_name: jenkins
+    volumes:
+      - jenkins:/var/jenkins_home:Z
+      - /var/run/docker.sock:/var/run/docker.sock:Z
+      - /usr/bin/docker:/usr/bin/docker:Z
+  scm:
+    image: docker.io/scmmanager/scm-manager:2.14.1
+    container_name: scm
+    ports:
+      - 8081:8080
+    volumes:
+      - scm:/var/lib/scm:Z
+
+volumes:
+  jenkins:
+    driver: local
+  scm:
+    driver: local
