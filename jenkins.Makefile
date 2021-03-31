@@ -1,6 +1,3 @@
-# Variables
-JEST_DIR = build/coverage/jest
-
 # Règles
 all: clean test
 
@@ -11,4 +8,4 @@ clean:
 	@mkdir -p build/coverage
 
 test:
-	jest --coverage --coverageDirectory=${JEST_DIR}
+	jest --coverage --reporters=default --reporters=jest-junit

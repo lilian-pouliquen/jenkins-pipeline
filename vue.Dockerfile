@@ -1,6 +1,9 @@
 # Pulling node image
 FROM node:lts-alpine
 
+# Installing make
+RUN apk add make
+
 # Creating app directory
 WORKDIR /app
 

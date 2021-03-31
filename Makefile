@@ -2,7 +2,6 @@
 JEST_DIR = build/coverage/jest
 
 # Règles
-
 all: help
 
 help:
@@ -26,7 +25,7 @@ help:
 
 
 build:
-	docker image build --no-cache --file vue.Dockerfile --tag node:vuejs
+	docker image build --no-cache --file vue.Dockerfile --tag node:vuejs ./
 
 install:
 	docker run --rm --volume "$PWD/:/app/" node:vuejs npm install
@@ -42,4 +41,4 @@ stop:
 restart: stop start
 
 jest:
-	docker exec vue_raspberry jest --coverage --coverageDirectory=${JEST_DIR}
+	docker exec vue_raspberry jest --coverage --reporters=default --reporters=jest-junit
