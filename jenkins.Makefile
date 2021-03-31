@@ -1,5 +1,8 @@
 # Règles
-all: clean test
+all: install clean test
+
+install:
+    npm install
 
 clean:
 	@rm -rf build/logs
