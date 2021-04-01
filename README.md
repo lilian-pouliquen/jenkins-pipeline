@@ -25,24 +25,26 @@ Les paquets suivants sont nécessaires au fonctionnement du projet :
 
 ## 3. Installation du projet
 
-```bash
-$ make prepare
-$ make start
-```
-
-Initialiser correctement Jenkins et SCM manager.  
-Les plugins Jenkins nécessaires sont les suivants :
-
-- Clover
-- Docker
-- Docker API
-- Docker Pipeline
-- Docker Slave
-- HTML Publisher
-- Warnings Next Generation
-- xUnit
-
-Créer le pipeline à l'aide du Jenkinsfile puis lancer un build.
+1. Ouvrir une ligne de commande bash à la racine du projet
+2. Entrer les commandes suivantes
+    1. `$ make prepare`
+    2. `$ make start`
+3. Initialiser Jenkins et SCM manager.
+4. Les plugins Jenkins nécessaires sont les suivants :
+    - Clover
+    - Docker
+    - Docker API
+    - Docker Pipeline
+    - Docker Slave
+    - HTML Publisher
+    - Warnings Next Generation
+    - xUnit
+5. Initialiser le dépôt SCM Manager et y versionner le code
+6. Créer l'authentification de Jenkins pour se connecter à SCM Manager
+7. Modifier le Jenkinsfile afin de faire concorder la connexion à SCM Manager
+8. Pousser le Jenkinsfile sur le dépôt SCM Manager
+9. Créer le pipeline en important le Jenkinsfile depuis SCM
+10. Lancer un build
 
 ## 4. Structure du projet
 
